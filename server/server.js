@@ -2,7 +2,6 @@ const express = require("express");
 const path = require("path");
 const db = require("./config/connection");
 const routes = require("./routes");
-const mongoose = require("mongoose");
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -15,15 +14,6 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../client/build")));
 }
 // Need to go to HEROKU and add config vars. Password for mongoatlas is not the greyed out square.
-mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost/book-search-engine",
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
-  }
-);
 
 app.use(routes);
 
