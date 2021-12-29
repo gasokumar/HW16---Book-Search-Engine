@@ -1,5 +1,5 @@
 import { gql } from "@apollo/client";
-
+// There should be one query for query me from typeDefs.js
 export const GET_ME = gql`
   query me {
     _id
