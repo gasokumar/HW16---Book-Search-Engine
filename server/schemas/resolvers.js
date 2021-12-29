@@ -1,6 +1,7 @@
 const { User, Book } = require("../models");
 const { AuthenticationError } = require("apollo-server-express");
 const { signToken } = require("../utils/auth");
+// Resolvers are what happens when you use the commands you defined in typeDefs.
 
 // Used user-controller js as a guide.
 // Need to define the query and mutation functionality to work with the Mongoose models.
@@ -21,7 +22,7 @@ const resolvers = {
   },
 
   Mutation: {
-    //   Take in the parameters, create a user and create a token for that user. Then returns the token and user.
+    //   Takes in the parameters, create a user and create a token for that user. Then returns the token and user.
     addUser: async (parent, args) => {
       const user = await User.create(args);
       const token = signToken(user);

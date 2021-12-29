@@ -1,7 +1,8 @@
-// typeDefs are what data the user can request, as well as the queries they can make.
+// typeDefs are the definitions of the data, as well as the commands they can use to manipulate the data.
 const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
+  # You need this when storing books so that when you pull up a user, an array of books linked to that user will come up.
   type Book {
     _id: ID!
     bookId: String!
@@ -11,7 +12,7 @@ const typeDefs = gql`
     image: String
     link: String
   }
-
+  # Defining a User.
   type User {
     _id: ID
     username: String!
@@ -19,7 +20,7 @@ const typeDefs = gql`
     password: String!
     savedBooks: [Book]
   }
-
+  # Auth type that has token and user.
   type Auth {
     token: ID!
     user: User
