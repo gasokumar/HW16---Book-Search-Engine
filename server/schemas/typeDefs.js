@@ -29,6 +29,16 @@ const typeDefs = gql`
     me: User
   }
 
+  # input for saveBook mutation.
+  input savedBook {
+    description: String
+    title: String
+    bookId: String
+    image: String
+    link: String
+    authors: [String]
+  }
+
   # Will need to create mutations for this app.
   type Mutation {
     #   login takes email and password as parameters, returns an Auth type
@@ -37,6 +47,7 @@ const typeDefs = gql`
     addUser(username: String!, email: String!, password: String!): Auth
     # saveBook takes in an input, returns a User type.
     saveBook(input: savedBook!): User
+    # Accepts a book's bookId as a parameter, returns a User type.
     removeBook(bookId: ID!): User
   }
 `;
