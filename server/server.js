@@ -15,6 +15,8 @@ const server = new ApolloServer({
   context: authMiddleware,
 });
 
+// await server.start();
+
 server.applyMiddleware({ app });
 
 app.use(express.urlencoded({ extended: true }));
@@ -30,7 +32,7 @@ app.get("*", (req, res) => {
 });
 // Need to go to HEROKU and add config vars. Password for mongoatlas is not the greyed out square.
 
-app.use(routes); // Comment this out at the end.
+//app.use(routes); // Comment this out at the end.
 
 db.once("open", () => {
   app.listen(PORT, () => console.log(`🌍 Now listening on localhost:${PORT}`));

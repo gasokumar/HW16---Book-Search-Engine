@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+//  Would go above after React , { useState, useEffect }
 import {
   Jumbotron,
   Container,
@@ -6,8 +7,8 @@ import {
   Card,
   Button,
 } from "react-bootstrap";
-
-import { getMe, deleteBook } from "../utils/API";
+import { useQuery, useMutation } from "@apollo/client";
+// import { getMe, deleteBook } from "../utils/API";
 import Auth from "../utils/auth";
 import { removeBookId } from "../utils/localStorage";
 import { GET_ME } from "../utils/queries";
@@ -55,17 +56,13 @@ const SavedBooks = () => {
     }
 
     try {
-      // const response = await deleteBook(bookId, token);
-      const { data } = await removeBook({
+      const response = await removeBook({
         variables: { bookId },
       });
-
-      if (!response.ok) {
+      if (!response) {
         throw new Error("something went wrong!");
       }
 
-      const updatedUser = await response.json();
-      setUserData(updatedUser);
       // upon success, remove book's id from localStorage
       removeBookId(bookId);
     } catch (err) {
